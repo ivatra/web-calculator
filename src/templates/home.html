@@ -4,27 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<div class="container mt-5">
-    <form class="mb-4">
-        <div class="alert alert-danger" role="alert" style=`{{ 'display: none;' if not error_msg }}`>{{error_msg}}</div>
+<div class="container">
+    <form>
+        <div class="alert alert-danger" role="alert"  
+             style = "display:block;">
+             {{ error_msg}}
+        </div>
         <h3>Введите математическое выражение</h3>
-        <input type="text" class="form-control" placeholder="1 * 2 - 3">
-        <button type="submit" class="btn btn-primary mt-3">Подтвердить</button>
+        <input type="text" placeholder="1 * 2 - 3">
+        <button type="submit">Подтвердить</button>
     </form>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Введеная строка</th>
-                <th scope="col">Результат</th>
+                <th>Введеная строка</th>
+                <th>Результат</th>
             </tr>
         </thead>
         <tbody>
-            {% for el in arr %}
+            {% for el in history %}
             <tr>
-                <td>{{el.expression}}</td>
-                <td>{{el.result}}</td>
+                <td>{{ el.expression }}</td>
+                <td>{{ el.result }}</td>
             </tr>
             {% endfor %}
         </tbody>
