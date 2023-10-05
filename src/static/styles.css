@@ -1,5 +1,5 @@
 .container {
-  max-width: 800px;
+  max-width: 500px;
   margin: auto;
   padding: 20px;
 }
@@ -8,25 +8,54 @@ form {
   margin-bottom: 40px;
 }
 
-input[type="text"] {
-  padding: 10px;
-  width: calc(100% - 22px);
+.base-expression {
+  display: block;
+  width: 100%;
+  justify-content: center;
+}
+
+.expression-item {
+  display: block;
+  width: 100%;
+  margin-right: 50px;
   margin-bottom: 20px;
+  align-items: center;
+}
+
+.expression-item > *{
+  margin-bottom:10px;
+}
+
+.expression-item input {
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
+.expression-item strong {
+  width: 100%;
+}
+
 button {
   padding: 10px 20px;
-  background-color: #4caf50;
   border: none;
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  background-color: #45a049;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #169c1d;
+}
+
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
 }
 
 .alert-danger {
@@ -58,3 +87,11 @@ button:hover {
 .table th {
   background-color: #f2f2f2;
 }
+
+/* .refresh-button {
+  background-color: #1f5a9e;
+}
+
+.refresh-button:hover {
+  background-color: #305580;
+} */

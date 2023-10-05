@@ -1,38 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-<div class="container">
-    <form>
-        <div class="alert alert-danger" role="alert"  
-             style = "display:block;">
-             {{ error_msg}}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <form
+        id="exprForm"
+        action="http://127.0.0.1:5000"
+        method="POST"
+        onsubmit="return validateExpr()"
+      >
+        <div
+          class="alert alert-danger {{ 'display-block' if error_msg else 'display-none' }}"
+          role="alert"
+        >
+          {{ error_msg }}
         </div>
-        <h3>Введите математическое выражение</h3>
-        <input type="text" placeholder="1 * 2 - 3">
-        <button type="submit">Подтвердить</button>
-    </form>
-    <table class="table">
+        <div class="base-expression">
+          <div class="expression-item">
+            <h3>Введите математическое выражение</h3>
+            <input type="text" id="expr" name="expr" placeholder="1 * 2 - 3" />
+            <button type="submit">Подтвердить</button>
+          </div>
+          <div class="expression-item">
+            <h3>
+              Результат последнего выражения {{history[-1].expr if history else
+              'None'}}
+            </h3>
+            <strong
+              >{{expr_result if expr_result else "Пока вы не выполняли ни одной
+              операции"}}</strong
+            >
+          </div>
+        </div>
+      </form>
+
+      <table class="table">
         <thead>
-            <tr>
-                <th>Введеная строка</th>
-                <th>Результат</th>
-            </tr>
+          <tr>
+            <th>Введеная строка</th>
+            <th>Результат</th>
+          </tr>
         </thead>
         <tbody>
-            {% for el in history %}
-            <tr>
-                <td>{{ el.expression }}</td>
-                <td>{{ el.result }}</td>
-            </tr>
-            {% endfor %}
+          {% for item in history %}
+          <tr>
+            <td>{{ item.expr }}</td>
+            <td>{{ item.result }}</td>
+          </tr>
+          {% endfor %}
         </tbody>
-    </table>
-</div>
-</body>
+      </table>
+    </div>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='expression_validator.js') }}"
+    ></script>
+  </body>
 </html>
