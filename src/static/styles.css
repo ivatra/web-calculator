@@ -1,3 +1,5 @@
+/* Можно было бы separate стили под каждый html файлик, но это совсем будет over-engineering уже */
+
 .container {
   max-width: 500px;
   margin: auto;
