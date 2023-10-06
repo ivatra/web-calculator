@@ -21,8 +21,8 @@ def calculate_expression(expr: str) -> float:
         raise ValueError("Выражение не может быть пустым")
 
     try:
-        result = sympify(expr)
+        result = float(sympify(expr))
     except Exception as e:
         raise ValueError("Не валидное выражение") from e
 
-    return round(float(result), 2)
+    return round(result, 2)
