@@ -1,4 +1,4 @@
-const AcceptableSymbols = ["(", ")", "+", "-", "/", "*"]
+const AcceptableSymbols = ["(", ")", "+", "-", "/", "*", " "]
 
 function _isNumber(char) {
     return !isNaN(parseInt(char)) && isFinite(char);
@@ -17,7 +17,7 @@ function validateExpression() {
     }
 
     for (let char of expr) {
-        if (!(_isNumber(char) || _isAcceptableSymbol(char))) {
+        if (!_isNumber(char) && !_isAcceptableSymbol(char)) {
             alert('Выражение имеет не разрешенные символы')
             return false
         }

@@ -1,4 +1,3 @@
-# Дописать парсинг строки ( validate_and_calculate_expression)
 import os
 
 from dotenv import load_dotenv
@@ -7,7 +6,7 @@ load_dotenv()
 
 from flask import Flask, redirect, render_template, session, request, url_for
 
-from funcs import get_random_string, validate_and_calculate_expression
+from funcs import get_random_string, calculate_expression
 
 
 app = Flask(__name__)
@@ -15,7 +14,7 @@ app.secret_key = os.getenv("SECRET_KEY")
 user_id_len = int(os.getenv("USER_ID_STRING_LENGTH"))
 
 
-def session_append(key:str,el:any):
+def append_to_session_array(key: str, el: any):
     arr = session[key]
     arr.append(el)
     session[key] = arr
@@ -40,14 +39,20 @@ def get():
 @app.post("/")
 def calculate():
     expr = request.form.get("expr")
-    res, err = validate_and_calculate_expression(expr)
-    if err:
-        session["error_msg"] = err
-    else:
-        new_history_el = {"expr": expr, "result": res}
-        session_append("history",new_history_el)
+    err, res = None, None
 
+    try:
+        res = calculate_expression(expr)
+    except (TypeError, ZeroDivisionError, ValueError) as error:
+        err = str(error)
+
+    if not err:
+        new_history_el = {"expr": expr, "result": res}
+        append_to_session_array("history", new_history_el)
+
+    session["error_msg"] = err
     return redirect(url_for("get"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

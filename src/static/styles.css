@@ -49,7 +49,6 @@ button:hover {
   background-color: #169c1d;
 }
 
-
 .display-block {
   display: block;
 }
@@ -59,7 +58,6 @@ button:hover {
 }
 
 .alert-danger {
-  display: none;
   color: white;
   background-color: red;
   padding: 10px;
