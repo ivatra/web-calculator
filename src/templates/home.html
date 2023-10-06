@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
     <link
       rel="stylesheet"
@@ -11,57 +9,8 @@
   </head>
   <body>
     <div class="container">
-      <form
-        id="exprForm"
-        action="http://127.0.0.1:5000"
-        method="POST"
-        onsubmit="return validateExpr()"
-      >
-        <div
-          class="alert alert-danger {{ 'display-block' if error_msg else 'display-none' }}"
-          role="alert"
-        >
-          {{ error_msg }}
-        </div>
-        <div class="base-expression">
-          <div class="expression-item">
-            <h3>Введите математическое выражение</h3>
-            <input type="text" id="expr" name="expr" placeholder="1 * 2 - 3" />
-            <button type="submit">Подтвердить</button>
-          </div>
-          <div class="expression-item">
-            <h3>
-              Результат последнего выражения {{history[-1].expr if history else
-              'None'}}
-            </h3>
-            <strong
-              >{{expr_result if expr_result else "Пока вы не выполняли ни одной
-              операции"}}</strong
-            >
-          </div>
-        </div>
-      </form>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Введеная строка</th>
-            <th>Результат</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in history %}
-          <tr>
-            <td>{{ item.expr }}</td>
-            <td>{{ item.result }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      {% include 'expression_form/form.html' %}
+      {% include 'history_table.html' %}
     </div>
-    <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='expression_validator.js') }}"
-    ></script>
   </body>
 </html>

@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Введеная строка</th>
+      <th>Результат</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in history %}
+    <tr>
+      <td>{{ item.expr }}</td>
+      <td>{{ item.result }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

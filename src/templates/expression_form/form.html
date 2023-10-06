@@ -1,0 +1,21 @@
+<form
+  id="exprForm"
+  action="http://127.0.0.1:5000"
+  method="POST"
+  onsubmit="return validateExpression()"
+>
+  <div
+    class="alert alert-danger {{ 'display-block' if error_msg else 'display-none' }}"
+    role="alert"
+  >
+    {{ error_msg }}
+  </div>
+  <div class="base-expression">
+    {% include 'expression_form/input.html' %} {% if history|length > 0 %} {% include
+    'expression_form/previous_result.html' %} {% endif %}
+  </div>
+</form>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='expression_validator.js') }}"
+></script>

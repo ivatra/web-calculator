@@ -1,0 +1,11 @@
+<div
+  class="expression-item"
+>
+  <h3>
+    Результат последнего выражения {{history[-1].expr if history else 'None'}}
+  </h3>
+  <strong
+    >{{history[-1].result if history[-1].result else "Пока вы не выполняли ни
+    одной операции"}}</strong
+  >
+</div>
