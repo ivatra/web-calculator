@@ -1,7 +1,6 @@
 import os
 
 from dotenv import load_dotenv
-from sympy import SympifyError
 
 load_dotenv()
 
@@ -44,7 +43,7 @@ def calculate():
 
     try:
         res = calculate_expression(expr)
-    except (TypeError, ZeroDivisionError, ValueError,SympifyError) as error:
+    except Exception as error:
         err = str(error)
 
     if not err:
@@ -56,4 +55,4 @@ def calculate():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="localhost", port=5000)

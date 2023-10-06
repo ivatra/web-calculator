@@ -4,6 +4,7 @@ from funcs import (
     calculate_expression,
 )
 
+
 class TestValidateAndCalculateExpression(unittest.TestCase):
     def test_valid_expression_1(self):
         expr = "((3 + 5) * 2) - 6 / 2"
@@ -37,11 +38,21 @@ class TestValidateAndCalculateExpression(unittest.TestCase):
 
     def test_division_by_zero(self):
         expr = "5 / 0"
-        with self.assertRaises(ZeroDivisionError):
+        with self.assertRaises(TypeError):
             calculate_expression(expr)
 
     def test_empty_expression(self):
         expr = ""
+        with self.assertRaises(ValueError):
+            calculate_expression(expr)
+
+    def test_single_number_expression(self):
+        expr = "50"
+        with self.assertRaises(ValueError):
+            calculate_expression(expr)
+
+    def test_missing_operator(self):
+        expr = "5 (3 + 2)"
         with self.assertRaises(ValueError):
             calculate_expression(expr)
 

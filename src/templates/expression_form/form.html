@@ -1,12 +1,12 @@
 <form
   id="exprForm"
-  action="http://127.0.0.1:5000"
+  action=""
   method="POST"
-  onsubmit="return validateExpression()"
+  onsubmit="return ExpressionValidator.validateExpression()"
 >
   <div
     class="alert alert-danger {{ 'display-block' if error_msg else 'display-none' }}"
-    role="alert"
+    role="alert" id = "alert"
   >
     {{ error_msg }}
   </div>
@@ -17,5 +17,5 @@
 </form>
 <script
   type="text/javascript"
-  src="{{ url_for('static', filename='expression_validator.js') }}"
+  src="{{ url_for('static', filename='scripts/validator.js') }}"
 ></script>
