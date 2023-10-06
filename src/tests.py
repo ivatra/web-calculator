@@ -38,7 +38,7 @@ class TestValidateAndCalculateExpression(unittest.TestCase):
 
     def test_division_by_zero(self):
         expr = "5 / 0"
-        with self.assertRaises(TypeError):
+        with self.assertRaises(ValueError):
             calculate_expression(expr)
 
     def test_empty_expression(self):

@@ -25,7 +25,7 @@ var ExpressionValidator = ( () => {
         }
 
         if (expr.length > 40) {
-            setAlertMessage("Слишком большое выражение")
+            setAlertMessage("Выражение должно быть меньше 40 символов")
             return false
         }
         return true;
