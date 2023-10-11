@@ -1,3 +1,4 @@
+from math import floor
 import random
 import string
 
@@ -14,6 +15,9 @@ def calculate_expression(expr: str) -> float:
         operators = set("+-*/")
         return any(op in expr for op in operators)
 
+    def truncate(f, n):
+        return floor(f * 10 ** n) / 10 ** n
+
     if not is_math_operation(expr):
         raise ValueError("Выражение не содержит математических операций")
 
@@ -25,4 +29,4 @@ def calculate_expression(expr: str) -> float:
     except Exception as e:
         raise ValueError("Не валидное выражение") from e
 
-    return round(result, 2)
+    return truncate(result,2)

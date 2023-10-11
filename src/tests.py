@@ -19,7 +19,7 @@ class TestValidateAndCalculateExpression(unittest.TestCase):
     def test_valid_expression_3(self):
         expr = "1 + 2 * (3 - (4 / (5 + 1)))"
         result = calculate_expression(expr)
-        self.assertEqual(result, 5.67)
+        self.assertEqual(result, 5.66)
 
     def test_valid_expression_4(self):
         expr = "(+10 + +20) + (-100 - 10)"
@@ -55,6 +55,12 @@ class TestValidateAndCalculateExpression(unittest.TestCase):
         expr = "5 (3 + 2)"
         with self.assertRaises(ValueError):
             calculate_expression(expr)
+
+    def test_round_to_100ths(self):
+        expr = "2 * (1 / 3)"
+        result = calculate_expression(expr)
+        self.assertNotEqual(result, 0.67)
+
 
 
 if __name__ == "__main__":
